@@ -1,0 +1,22 @@
+{
+    "name": "damienraymond/php-file-system-rate-limiter",
+    "description": "Simple rate limiter",
+    "type": "library",
+    "require": {
+        "phpunit/phpunit": "^9.5",
+        "phpoption/phpoption": "^1.9"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Damienraymond\\PhpFileSystemRateLimiter\\": "src/",
+            "Damienraymond\\PhpFileSystemRateLimiter\\Test\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Damien R",
+            "email": "dam.ray49@gmail.com"
+        }
+    ]
+}
