@@ -26,15 +26,15 @@ class RateLimiter
 
     public function allowCall(): bool
     {
-        $bucket = Option::fromValue($this->bucketRepository->get($this->id))->getOrElse(
+        return $this->bucketRepository->upsert(
+            $this->id,
+            function (Bucket $bucket) {
+                return $bucket
+                    ->decrease()
+                    ->resetIfIntervalIsElapsed();
+            },
             Bucket::createBucket($this->bucketSize, $this->bucketTime)
-        );
-
-        $isNonEmpty = $bucket->callAllowed();
-
-        $this->bucketRepository->save($this->id, $bucket->decrease()->resetIfIntervalIsElapsed());
-
-        return $isNonEmpty;
+        )->callAllowed();
     }
 
 }

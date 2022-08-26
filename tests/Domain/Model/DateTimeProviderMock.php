@@ -3,21 +3,22 @@
 namespace Damienraymond\PhpFileSystemRateLimiter\Test\Domain\Model;
 
 use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\DateTimeProvider;
+use DateTimeImmutable;
 
-class DataTimeProviderMock extends DateTimeProvider
+class DateTimeProviderMock extends DateTimeProvider
 {
 
-    private \DateTime $dateTime;
+    private DateTimeImmutable $dateTime;
 
     /**
-     * @param \DateTime $dateTime
+     * @param DateTimeImmutable $dateTime
      */
-    public function setDateTime(\DateTime $dateTime): void
+    public function setDateTime(DateTimeImmutable $dateTime): void
     {
         $this->dateTime = $dateTime;
     }
 
-    public function now(): \DateTime
+    public function now(): DateTimeImmutable
     {
         return $this->dateTime;
     }

@@ -18,5 +18,8 @@
             "name": "Damien R",
             "email": "dam.ray49@gmail.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "vimeo/psalm": "^4.26"
+    }
 }

@@ -8,6 +8,7 @@ use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime
 class Bucket
 {
     private BucketSize $bucketSize;
+
     private BucketTime $bucketTime;
 
     private function __construct(BucketSize $bucketSize, BucketTime $bucketTime)
@@ -16,7 +17,7 @@ class Bucket
         $this->bucketTime = $bucketTime;
     }
 
-    public static function createBucket(BucketSize $bucketSize, BucketTime $bucketTime)
+    public static function createBucket(BucketSize $bucketSize, BucketTime $bucketTime): self
     {
         return new Bucket($bucketSize, $bucketTime);
     }
@@ -36,6 +37,22 @@ class Bucket
             return new Bucket($this->bucketSize->reset(), $this->bucketTime->reset());
         }
         return $this;
+    }
+
+    /**
+     * @return BucketSize
+     */
+    public function getBucketSize(): BucketSize
+    {
+        return $this->bucketSize;
+    }
+
+    /**
+     * @return BucketTime
+     */
+    public function getBucketTime(): BucketTime
+    {
+        return $this->bucketTime;
     }
 
 }

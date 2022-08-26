@@ -8,6 +8,7 @@ use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
 use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
 use \Damienraymond\PhpFileSystemRateLimiter\Domain\RateLimiter;
 use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\InMemoryBucketRepository;
+use Damienraymond\PhpFileSystemRateLimiter\Test\Domain\Model\DateTimeProviderMock;
 use PHPUnit\Framework\TestCase;
 
 class RateLimiterTest extends TestCase
@@ -40,6 +41,30 @@ class RateLimiterTest extends TestCase
             $rateLimiter->allowCall();
         }
         $this->assertFalse($rateLimiter->allowCall());
+    }
+
+    public function testThatThatBucketGetsResetOnceTheThresholdWasReached()
+    {
+        $dataTimeProviderMock = new DateTimeProviderMock();
+        $now = new \DateTimeImmutable();
+        $dataTimeProviderMock->setDateTime($now);
+        $bucketTime = new BucketTime(Duration::seconds(10), $dataTimeProviderMock);
+        $rateLimiter = new RateLimiter(
+            "test",
+            $bucketTime,
+            BucketSize::createBucketSize(6),
+            new InMemoryBucketRepository()
+        );
+
+        for ($i = 1; $i < 6; $i++) {
+            $this->assertTrue($rateLimiter->allowCall());
+        }
+        $this->assertFalse($rateLimiter->allowCall());
+
+        $nowPlus65Seconds = (new \DateTimeImmutable())->add(\DateInterval::createFromDateString('11 seconds'));
+        $dataTimeProviderMock->setDateTime($nowPlus65Seconds);
+
+        $this->assertTrue($rateLimiter->allowCall());
 
     }
 
@@ -55,5 +80,4 @@ class RateLimiterTest extends TestCase
             new InMemoryBucketRepository()
         );
     }
-
 }

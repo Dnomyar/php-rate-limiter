@@ -4,8 +4,8 @@ namespace Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration;
 
 class DateTimeProvider
 {
-    public function now(): \DateTime
+    public function now(): \DateTimeImmutable
     {
-        return new \DateTime();
+        return new \DateTimeImmutable();
     }
 }

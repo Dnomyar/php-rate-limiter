@@ -6,7 +6,7 @@ use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
 use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
 use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
 use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
-use Damienraymond\PhpFileSystemRateLimiter\Test\Domain\Model\DataTimeProviderMock;
+use Damienraymond\PhpFileSystemRateLimiter\Test\Domain\Model\DateTimeProviderMock;
 use PHPUnit\Framework\TestCase;
 
 class BucketTest extends TestCase
@@ -37,28 +37,28 @@ class BucketTest extends TestCase
         );
         $this->assertFalse($bucket->decrease()->decrease()->callAllowed());
     }
-//
-//    public function testThatWhenTheDelayIsElapsedTheBucketIsReset()
-//    {
-//        $dataTimeProviderMock = new DataTimeProviderMock();
-//        $dataTimeProviderMock->setDateTime(new \DateTime());
-//        $bucket = Bucket::createBucket(
-//            BucketSize::createBucketSize(5),
-//            new BucketTime(Duration::seconds(10), $dataTimeProviderMock)
-//        );
-//        for ($i = 0; $i < 5; $i++) {
-//            $this->assertTrue($bucket->callAllowed());
-//            $bucket = $bucket->tryDecreaseOrTimeReset();
-//        }
-//        $this->assertFalse($bucket->callAllowed());
-//
-//        $dataTimeProviderMock->setDateTime((new \DateTime)->sub(\DateInterval::createFromDateString('11 seconds')));
-//
-//        for ($i = 0; $i < 5; $i++) {
-//            $this->assertTrue($bucket->callAllowed());
-//            $bucket = $bucket->tryDecreaseOrTimeReset();
-//        }
-////        $this->assertFalse($bucket->callAllowed());
-//    }
+
+    public function testThatTheBucketIsResetIfTheIntervalIsElapsed(){
+        $dateTimeProviderMock = new DateTimeProviderMock();
+        $dateTimeProviderMock->setDateTime(new \DateTimeImmutable());
+        $bucket = Bucket::createBucket(
+            BucketSize::createBucketSize(2),
+            new BucketTime(Duration::seconds(10), $dateTimeProviderMock)
+        );
+        $bucketDecreased = $bucket->decrease();
+
+        $now = new \DateTimeImmutable;
+        $timeLastReset = $now->add(\DateInterval::createFromDateString('11 seconds'));
+        $dateTimeProviderMock->setDateTime($timeLastReset);
+
+        $maybeBucketDecreased = $bucketDecreased->resetIfIntervalIsElapsed();
+
+        $this->assertEquals($maybeBucketDecreased->getBucketSize()->getCurrentSize(), 2);
+        $this->assertEquals(
+            $maybeBucketDecreased->getBucketTime()->getTimeLastReset(),
+            ($now)->add(\DateInterval::createFromDateString('11 seconds'))
+        );
+    }
+
 
 }

@@ -8,13 +8,14 @@ class BucketSize
     private int $initialSize;
     private int $currentSize;
 
-    private function __construct(int $initialSize, int $currentSize)
+    // this constructor should only be used to rehydrate the object
+    public function __construct(int $initialSize, int $currentSize)
     {
         $this->initialSize = $initialSize;
         $this->currentSize = $currentSize;
     }
 
-    public static function createBucketSize(int $initialSize){
+    public static function createBucketSize(int $initialSize): self{
         return new BucketSize($initialSize, $initialSize);
     }
 
@@ -25,6 +26,15 @@ class BucketSize
     {
         return $this->currentSize;
     }
+
+    /**
+     * @return int
+     */
+    public function getInitialSize(): int
+    {
+        return $this->initialSize;
+    }
+
 
     public function decrease(): BucketSize
     {
