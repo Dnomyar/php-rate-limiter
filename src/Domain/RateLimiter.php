@@ -6,8 +6,6 @@ namespace Damienraymond\PhpFileSystemRateLimiter\Domain;
 use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
 use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
 use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
-use phpDocumentor\Reflection\Types\This;
-use PhpOption\Option;
 
 class RateLimiter
 {
