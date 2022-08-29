@@ -3,43 +3,57 @@
 namespace Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository;
 
 use Damienraymond\PhpFileSystemRateLimiter\Domain\BucketRepository;
+use Damienraymond\PhpFileSystemRateLimiter\Domain\BucketRepositoryException;
 use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
 use PhpOption\Option;
 
-
-interface FileSystemFileLocker
-{
-    public function lock(string $filename): bool;
-
-    public function unlock(string $filename): void;
-}
 
 class FileSystemBucketRepository implements BucketRepository
 {
     private FileSystemFileAdapter $fileSystemFileAdapter;
     private BucketSerializer $bucketSerializer;
+    private LockFile $lockFile;
 
     /**
      * @param FileSystemFileAdapter $fileSystemFileAdapter
      * @param BucketSerializer $bucketSerializer
+     * @param LockFile $lockFile
      */
-    public function __construct(FileSystemFileAdapter $fileSystemFileAdapter, BucketSerializer $bucketSerializer)
+    public function __construct(FileSystemFileAdapter $fileSystemFileAdapter, BucketSerializer $bucketSerializer, LockFile $lockFile)
     {
         $this->fileSystemFileAdapter = $fileSystemFileAdapter;
         $this->bucketSerializer = $bucketSerializer;
+        $this->lockFile = $lockFile;
     }
 
+    /**
+     * @throws BucketRepositoryException when another concurrent request is updating the bucket.
+     * The advice is to try again later.
+     * If it happens too often, another implementation that has a better support for updating atomically the bucket
+     * should be used
+     */
     function upsert(string $id, callable $update, Bucket $initialBucket): Bucket
     {
         $filename = './' . $id;
-        $bucket =
-            Option::fromValue($this->fileSystemFileAdapter->get($filename))
-                ->flatMap(function (string $serializedBucket) {
-                    return Option::fromValue($this->bucketSerializer->deserialize($serializedBucket));
-                })
-                ->getOrElse($initialBucket);
-        $newBucket = $update($bucket);
-        $this->fileSystemFileAdapter->save($filename, $this->bucketSerializer->serialize($newBucket));
-        return $newBucket;
+
+        if (! $this->lockFile->lock($filename)) {
+            try {
+                $bucket =
+                    Option::fromValue($this->fileSystemFileAdapter->get($filename))
+                        ->flatMap(function (string $serializedBucket) {
+                            return Option::fromValue($this->bucketSerializer->deserialize($serializedBucket));
+                        })
+                        ->getOrElse($initialBucket);
+                $newBucket = $update($bucket);
+                $this->fileSystemFileAdapter->save($filename, $this->bucketSerializer->serialize($newBucket));
+                return $newBucket;
+            } catch (\Exception) {
+                return $initialBucket;
+            } finally {
+                $this->lockFile->unlock($filename);
+            }
+        } else {
+            throw new BucketRepositoryException("Unable to update at the moment, try again");
+        }
     }
 }

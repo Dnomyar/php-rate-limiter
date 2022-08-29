@@ -40,24 +40,27 @@ class BucketSerializerImplementation implements BucketSerializer
 
     public function deserialize(string $serializeBucket): ?Bucket
     {
-        $exploded = explode($this->SEPARATOR, $serializeBucket);
+        try {
+            $exploded = explode($this->SEPARATOR, $serializeBucket);
+            if (count($exploded) == 6) {
+                $initialSize = $exploded[1];
+                $currentSize = $exploded[2];
+                $duration = $exploded[3];
+                $dateTimeImmutable = $exploded[4];
+                $microseconds = $exploded[5];
 
-        if(count($exploded) == 6){
-            $initialSize = $exploded[1];
-            $currentSize = $exploded[2];
-            $duration = $exploded[3];
-            $dateTimeImmutable = $exploded[4];
-            $microseconds = $exploded[5];
-
-            return Bucket::createBucket(
-                new BucketSize($initialSize, $currentSize),
-                new BucketTime(
-                    Duration::seconds($duration),
-                    new DateTimeProvider(),
-                    (new \DateTimeImmutable($dateTimeImmutable))->add(\DateInterval::createFromDateString($microseconds . ' microseconds'))
-                )
-            );
+                return Bucket::createBucket(
+                    new BucketSize(intval($initialSize), intval($currentSize)),
+                    new BucketTime(
+                        Duration::seconds(intval($duration)),
+                        new DateTimeProvider(),
+                        (new \DateTimeImmutable($dateTimeImmutable))->add(\DateInterval::createFromDateString($microseconds . ' microseconds'))
+                    )
+                );
+            }
+            return null;
+        } catch (\Exception $e) {
+            return null;
         }
-        return null;
     }
 }

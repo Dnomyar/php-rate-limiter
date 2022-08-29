@@ -9,13 +9,16 @@ class FileSystemFileAdapterImplementation implements FileSystemFileAdapter
     {
         try {
             return file_get_contents($filename);
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return null;
         }
     }
 
     public function save(string $filename, string $toSave): void
     {
-        file_put_contents($filename, $toSave);
+        try {
+            file_put_contents($filename, $toSave);
+        } catch (\Exception) {
+        }
     }
 }

@@ -11,6 +11,7 @@ use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\BucketSeria
 use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemBucketRepository;
 use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemFileAdapterImplementation;
 use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\InMemoryBucketRepository;
+use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\LockFileImplementation;
 use Damienraymond\PhpFileSystemRateLimiter\Test\Domain\Model\DateTimeProviderMock;
 use PHPUnit\Framework\TestCase;
 
@@ -94,7 +95,7 @@ class BucketRepositoryTest extends TestCase
     /**
      * @dataProvider provideRepository
      */
-    public function testThatItSavesAndRetreivesTheBucket($bucketRepository){
+    public function testThatItSavesAndRetrievesTheBucket($bucketRepository){
         $initialBUcket = Bucket::createBucket(
             BucketSize::createBucketSize(6),
             new BucketTime(Duration::seconds(60))
@@ -128,7 +129,8 @@ class BucketRepositoryTest extends TestCase
             array(new InMemoryBucketRepository()),
             array(new FileSystemBucketRepository(
                 new FileSystemFileAdapterImplementation(),
-                new BucketSerializerImplementation()
+                new BucketSerializerImplementation(),
+                new LockFileImplementation()
             ))
         );
     }
@@ -137,6 +139,7 @@ class BucketRepositoryTest extends TestCase
     {
         try {
             unlink('./' . $this->id);
+            unlink('./' . $this->id . '.lock');
         } catch (\Exception $e) {
         }
     }

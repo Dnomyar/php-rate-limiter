@@ -41,7 +41,7 @@ class BucketSize
         return new BucketSize($this->initialSize, max(0, $this->getCurrentSize() - 1));
     }
 
-    public function reset()
+    public function reset(): self
     {
         return $this::createBucketSize($this->initialSize);
     }
