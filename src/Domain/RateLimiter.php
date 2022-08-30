@@ -9,23 +9,21 @@ use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
 
 class RateLimiter
 {
-    private string $id;
     private BucketTime $bucketTime;
     private BucketSize $bucketSize;
     private BucketRepository $bucketRepository;
 
-    public function __construct(string $id, BucketTime $bucketTime, BucketSize $bucketSize, BucketRepository $bucketRepository)
+    public function __construct(BucketTime $bucketTime, BucketSize $bucketSize, BucketRepository $bucketRepository)
     {
-        $this->id = $id;
         $this->bucketTime = $bucketTime;
         $this->bucketSize = $bucketSize;
         $this->bucketRepository = $bucketRepository;
     }
 
-    public function allowCall(): bool
+    public function allowCall(string $id): bool
     {
         return $this->bucketRepository->upsert(
-            $this->id,
+            $id,
             function (Bucket $bucket) {
                 return $bucket
                     ->decrease()

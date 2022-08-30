@@ -1,6 +1,8 @@
 # Low budget rate limiter
 
-This is a low budget rate limiter. Low budget because it uses the file system as a repository: it does not require another other tool. It can be used to protect a public form from bots or limit by user.
+This is a low budget rate limiter. Low budget because it does not require any additional tool to work. It uses the file system as a repository. It can be used to protect a public form from bots or limit by user.
+
+The current implementation allows to atomically update the bucket. If another request is trying to update the save bucket at the same it will throw an Exception.
 
 
 ## Usage
@@ -20,7 +22,6 @@ use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemF
 use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemBucketRepository;
 
 $rateLimiter = new RateLimiter(
-    'id-to-change',
      new BucketTime(Duration::seconds(10)),
      BucketSize::createBucketSize(6),
      new FileSystemBucketRepository(
@@ -34,7 +35,7 @@ $rateLimiter = new RateLimiter(
  * return true of false if the call is allowed
  * thows a BucketRepositoryException if another request is trying to use the feature at the same time.
  */
-$rateLimiter->allowCall();
+$rateLimiter->allowCall('id-to-change');
 ```
 
 ## Limitation
