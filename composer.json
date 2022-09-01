@@ -1,5 +1,5 @@
 {
-    "name": "dnomyar/php-file-system-rate-limiter",
+    "name": "dnomyar/php-rate-limiter",
     "description": "Simple rate limiter",
     "type": "library",
     "require": {
