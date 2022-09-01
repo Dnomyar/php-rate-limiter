@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Domain;
+namespace Dnomyar\PhpFileSystemRateLimiter\Domain;
 
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Bucket;
 
 class RateLimiter
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Domain;
+namespace Dnomyar\PhpFileSystemRateLimiter\Domain;
 
 class BucketRepositoryException extends \Exception
 {

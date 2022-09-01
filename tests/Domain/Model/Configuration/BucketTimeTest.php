@@ -1,8 +1,8 @@
 <?php
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration;
+namespace Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration;
 
-use Damienraymond\PhpFileSystemRateLimiter\Test\Domain\Model\DateTimeProviderMock;
+use Dnomyar\PhpFileSystemRateLimiter\Test\Domain\Model\DateTimeProviderMock;
 use PHPUnit\Framework\TestCase;
 
 class BucketTimeTest extends TestCase

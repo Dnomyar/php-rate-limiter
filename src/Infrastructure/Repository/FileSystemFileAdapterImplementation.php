@@ -1,6 +1,6 @@
 <?php
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository;
+namespace Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository;
 
 class FileSystemFileAdapterImplementation implements FileSystemFileAdapter
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Test\Domain\Model\Configuration;
+namespace Dnomyar\PhpFileSystemRateLimiter\Test\Domain\Model\Configuration;
 
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
 use PHPUnit\Framework\TestCase;
 
 class BucketSizeTest extends TestCase

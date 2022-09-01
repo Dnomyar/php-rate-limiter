@@ -1,5 +1,5 @@
 {
-    "name": "damienraymond/php-file-system-rate-limiter",
+    "name": "dnomyar/php-file-system-rate-limiter",
     "description": "Simple rate limiter",
     "type": "library",
     "require": {
@@ -9,8 +9,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Damienraymond\\PhpFileSystemRateLimiter\\": "src/",
-            "Damienraymond\\PhpFileSystemRateLimiter\\Test\\": "tests/"
+            "Dnomyar\\PhpFileSystemRateLimiter\\": "src/",
+            "Dnomyar\\PhpFileSystemRateLimiter\\Test\\": "tests/"
         }
     },
     "authors": [

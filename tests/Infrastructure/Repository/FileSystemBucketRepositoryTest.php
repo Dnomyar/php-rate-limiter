@@ -1,17 +1,17 @@
 <?php
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Test\Infrastructure\Repository;
+namespace Dnomyar\PhpFileSystemRateLimiter\Test\Infrastructure\Repository;
 
-use Damienraymond\PhpFileSystemRateLimiter\Domain\BucketRepositoryException;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\BucketSerializerImplementation;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\BucketSerializer;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemBucketRepository;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemFileAdapterImplementation;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\LockFileImplementation;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\BucketRepositoryException;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Bucket;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\BucketSerializerImplementation;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\BucketSerializer;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemBucketRepository;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemFileAdapterImplementation;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\LockFileImplementation;
 use PHPUnit\Framework\TestCase;
 
 class FileSystemBucketRepositoryTest extends TestCase

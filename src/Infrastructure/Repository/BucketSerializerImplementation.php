@@ -1,12 +1,12 @@
 <?php
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository;
+namespace Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository;
 
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\DateTimeProvider;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Bucket;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\DateTimeProvider;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
 use DateTimeInterface;
 
 class BucketSerializerImplementation implements BucketSerializer

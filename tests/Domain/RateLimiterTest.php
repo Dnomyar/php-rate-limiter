@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Test\Domain;
+namespace Dnomyar\PhpFileSystemRateLimiter\Test\Domain;
 
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
-use \Damienraymond\PhpFileSystemRateLimiter\Domain\RateLimiter;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\InMemoryBucketRepository;
-use Damienraymond\PhpFileSystemRateLimiter\Test\Domain\Model\DateTimeProviderMock;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
+use \Dnomyar\PhpFileSystemRateLimiter\Domain\RateLimiter;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\InMemoryBucketRepository;
+use Dnomyar\PhpFileSystemRateLimiter\Test\Domain\Model\DateTimeProviderMock;
 use PHPUnit\Framework\TestCase;
 
 class RateLimiterTest extends TestCase
@@ -19,7 +19,7 @@ class RateLimiterTest extends TestCase
     public function test()
     {
         $rateLimiter = $this->createRateLimiter();
-        $this->assertInstanceOf('\Damienraymond\PhpFileSystemRateLimiter\Domain\RateLimiter', $rateLimiter);
+        $this->assertInstanceOf('\Dnomyar\PhpFileSystemRateLimiter\Domain\RateLimiter', $rateLimiter);
     }
 
     public function testThatRateLimiterAllows()

@@ -1,12 +1,12 @@
 <?php
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Test\Domain\Model;
+namespace Dnomyar\PhpFileSystemRateLimiter\Test\Domain\Model;
 
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
-use Damienraymond\PhpFileSystemRateLimiter\Test\Domain\Model\DateTimeProviderMock;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Bucket;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
+use Dnomyar\PhpFileSystemRateLimiter\Test\Domain\Model\DateTimeProviderMock;
 use PHPUnit\Framework\TestCase;
 
 class BucketTest extends TestCase

@@ -12,14 +12,14 @@ This library provides a `RateLimiter` class that need to be initialized with a i
 - limit the number of call per user. In that case, the id could be `business-description-<user-id>`
 
 ```php
-use Damienraymond\PhpFileSystemRateLimiter\Domain\RateLimiter;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\LockFileImplementation;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\BucketSerializerImplementation;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemFileAdapterImplementation;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemBucketRepository;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\RateLimiter;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\LockFileImplementation;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\BucketSerializerImplementation;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemFileAdapterImplementation;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\FileSystemBucketRepository;
 
 $rateLimiter = new RateLimiter(
      new BucketTime(Duration::seconds(10)),

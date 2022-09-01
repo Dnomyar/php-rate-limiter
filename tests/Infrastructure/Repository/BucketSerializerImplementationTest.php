@@ -1,13 +1,13 @@
 <?php
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Test\Infrastructure\Repository;
+namespace Dnomyar\PhpFileSystemRateLimiter\Test\Infrastructure\Repository;
 
 
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
-use Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository\BucketSerializerImplementation;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Bucket;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketSize;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\BucketTime;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Configuration\Duration;
+use Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository\BucketSerializerImplementation;
 use PHPUnit\Framework\TestCase;
 
 class BucketSerializerImplementationTest extends TestCase

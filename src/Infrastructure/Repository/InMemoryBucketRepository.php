@@ -1,9 +1,9 @@
 <?php
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository;
+namespace Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository;
 
-use Damienraymond\PhpFileSystemRateLimiter\Domain\BucketRepository;
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\BucketRepository;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Bucket;
 use PhpOption\Option;
 
 class InMemoryBucketRepository implements BucketRepository

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Domain;
+namespace Dnomyar\PhpFileSystemRateLimiter\Domain;
 
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Bucket;
 
 interface BucketRepository {
 

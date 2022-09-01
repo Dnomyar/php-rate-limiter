@@ -1,8 +1,8 @@
 <?php
 
-namespace Damienraymond\PhpFileSystemRateLimiter\Infrastructure\Repository;
+namespace Dnomyar\PhpFileSystemRateLimiter\Infrastructure\Repository;
 
-use Damienraymond\PhpFileSystemRateLimiter\Domain\Model\Bucket;
+use Dnomyar\PhpFileSystemRateLimiter\Domain\Model\Bucket;
 
 interface BucketSerializer
 {
