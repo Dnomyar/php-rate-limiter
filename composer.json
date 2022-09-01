@@ -3,6 +3,7 @@
     "description": "Simple rate limiter",
     "type": "library",
     "require": {
+        "php": ">=7.2",
         "phpoption/phpoption": "^1.9"
     },
     "license": "MIT",
